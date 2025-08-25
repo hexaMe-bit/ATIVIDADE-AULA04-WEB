@@ -1,12 +1,17 @@
 import { readFile } from 'fs/promises';
 
+interface Config{
+      DataBaseURL: string,
+      port: number,
+      debugMode: bool
+      
+}
 
 
-
-async function carregarConfig() {
+async function carregarConfig(): Promise<void> {
       try {
             const dados = await readFile('config.json', 'utf-8');
-            const config = JSON.parse(dados);
+            const config: Config = JSON.parse(dados);
 
             console.log("Configuração carregada:");
             console.log(`Porta do servidor: ${config.port}`);
